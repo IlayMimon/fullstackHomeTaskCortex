@@ -6,7 +6,10 @@ const trafficEntriesEndpoint = `${import.meta.env.VITE_API_BASE_URL}/trafficEntr
 export const trafficEntriesService = {
   async getAll(token: string): Promise<TrafficEntry[]> {
     return axios
-      .get(trafficEntriesEndpoint, { headers: { Authorization: `Bearer ${token}` } })
+      .get(trafficEntriesEndpoint, {
+        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
+      })
       .then((res) =>
         res.data.sort(
           (a: TrafficEntry, b: TrafficEntry) =>
@@ -20,7 +23,10 @@ export const trafficEntriesService = {
     token: string,
   ): Promise<AxiosResponse<TrafficEntry>> {
     return axios
-      .post(trafficEntriesEndpoint, data, { headers: { Authorization: `Bearer ${token}` } })
+      .post(trafficEntriesEndpoint, data, {
+        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
+      })
       .then((res) => res);
   },
 
@@ -33,7 +39,7 @@ export const trafficEntriesService = {
       .put(
         trafficEntriesEndpoint,
         { id, ...data },
-        { headers: { Authorization: `Bearer ${token}` } },
+        { headers: { Authorization: `Bearer ${token}` }, withCredentials: true },
       )
       .then((res) => res);
   },
@@ -42,6 +48,7 @@ export const trafficEntriesService = {
     return axios
       .delete(trafficEntriesEndpoint, {
         headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
         data: { id },
       })
       .then((res) => res.status);

@@ -7,20 +7,17 @@ import trafficRoutes from "./routes/trafficEntries.routes";
 setGlobalOptions({ maxInstances: 10 });
 
 const app = express();
-
 const allowedOrigins = ["https://fullstackhometaskcortex.web.app"];
 
 app.use((req, res, next) => {
   const origin = req.headers.origin;
   if (origin && allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
-    res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    res.setHeader("Access-Control-Allow-Credentials", "true");
   }
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(204);
-  }
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type,Authorization");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  if (req.method === "OPTIONS") return res.sendStatus(204);
   return next();
 });
 
