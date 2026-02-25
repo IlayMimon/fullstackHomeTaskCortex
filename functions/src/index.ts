@@ -9,9 +9,14 @@ setGlobalOptions({ maxInstances: 10 });
 
 const app = express();
 
+const allowedOrigins = ["https://fullstackhometaskcortex.web.app"];
+
 app.use(
   cors({
-    origin: true,
+    origin: (origin, callback) => {
+      if (origin && allowedOrigins.includes(origin)) return callback(null, true);
+      callback(new Error("Not allowed by CORS"));
+    },
     credentials: true,
   }),
 );
