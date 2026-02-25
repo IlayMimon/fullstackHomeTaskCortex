@@ -1,114 +1,64 @@
-# React + TypeScript + Vite
+# Interactive Traffic Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Fullstack web application built with **React** and **Firebase**.  
+Features include user authentication, traffic data management with **Firestore**, and interactive visualization in both table and chart formats. Backend logic is handled with **Firebase Cloud Functions**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Prerequisites
 
-## React Compiler
+- Node.js >= 18
+- npm or yarn
+- Firebase CLI (`npm install -g firebase-tools`)
+- Git
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. **Clone the repository**
 
-````js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    # fullstackHomeTaskCortex
+```bash
+git clone https://github.com/IlayMimon/fullstackHomeTaskCortex
+cd fullstackHomeTaskCortex
+```
 
-    This repository contains a React + Vite frontend and Firebase Cloud Functions (TypeScript).
+## 2. Install Frontend Dependencies
 
-    ## Prerequisites
+Make sure you are in the root folder of your project, Then run:
 
-    - Node.js 18+ (the `functions` folder targets Node 24 for production; use a recent Node locally)
-    - npm
-    - Firebase CLI: `npm install -g firebase-tools`
+```bash
+npm install
+```
 
-    ## Install dependencies
+## 3. Install Firebase functions dependencies
 
-    From the project root:
+```bash
+cd functions
+npm install
+```
 
-    ```bash
-    npm install
-    ```
+## 4. Configure Firebase
 
-    Then install functions dependencies (inside `functions`):
+Make sure you have a Firebase project and set up the .env
 
-    ```bash
-    cd functions
-    npm install
-    cd ..
-    ```
+## Running Locally with Firebase Emulator
 
-    ## Run frontend locally
+You will need **two terminals**:
 
-    Start the Vite dev server from the project root:
+### Frontend (React)
 
-    ```bash
-    npm run dev
-    ```
+npm run dev
 
-    Open the URL Vite prints (commonly http://localhost:5173).
+This will start the React app at [http://localhost:5173](http://localhost:5173) (default Vite port).
 
-    ## Run Firebase Functions locally (emulator)
+### Backend (Firebase Functions Emulator)
 
-    From the `functions` folder run the `serve` script which builds TypeScript and starts the emulator:
+cd functions  
+npm run serve
 
-    ```bash
-    cd functions
-    npm run serve
-    ```
+This will start the Firebase Functions emulator locally (usually at [http://localhost:5001](http://localhost:5001)).
 
-    This compiles TypeScript into `lib/` and starts the Firebase emulator for functions. The emulator output shows local endpoints and logs.
+> Now your frontend can call your local Firebase Functions while developing.
 
-    For an interactive functions shell you can run:
-
-    ```bash
-    cd functions
-    npm run shell
-    ```
-
-    ## Build & deploy
-
-    - Build the frontend for production:
-
-    ```bash
-    npm run build
-    ```
-
-    - Deploy functions to Firebase (requires `firebase login` and project selection):
-
-    ```bash
-    cd functions
-    npm run deploy
-    ```
-
-    ## Useful scripts
-
-    - Frontend dev: `npm run dev`
-    - Frontend build: `npm run build`
-    - Frontend tests: `npm run test`
-    - Functions serve (emulator): `cd functions && npm run serve`
-    - Functions build: `cd functions && npm run build`
-
-    ## Troubleshooting
-
-    - If the emulator fails to start, make sure the Firebase CLI is installed and no other process uses the required ports.
-    - If TypeScript reports missing module types for frontend libs (for example `@ant-design/plots`), add `src/types/ant-design-plots.d.ts` with:
-
-    ```ts
-    declare module '@ant-design/plots';
-    ```
-
-    ## Optional improvements I can add
-
-    - Add a `Contributing` or `Environment` section with required env vars and examples.
-    - Add a script to run frontend + functions concurrently (using `concurrently` or `npm-run-all`).
-
-    Tell me which of the optional improvements you'd like and I'll add them.
-````
+---
