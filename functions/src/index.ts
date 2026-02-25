@@ -7,10 +7,12 @@ import trafficRoutes from "./routes/trafficEntries.routes";
 setGlobalOptions({ maxInstances: 10 });
 
 const app = express();
-const allowedOrigins = ["https://fullstackhometaskcortex.web.app"];
+const allowedOrigins = [
+  "https://fullstackhometaskcortex.web.app",
+  "https://fullstackhometaskcortex.web.app/",
+];
 
 app.options("*", (req: Request, res: Response) => {
-  console.log("Received CORS preflight request from origin:", req.headers.origin);
   const origin = req.headers.origin || "";
   if (allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
@@ -23,7 +25,6 @@ app.options("*", (req: Request, res: Response) => {
 });
 
 app.use((req: Request, res: Response, next: NextFunction) => {
-  console.log("Received CORS preflight request from origin:", req.headers.origin);
   const origin = req.headers.origin || "";
   if (allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
